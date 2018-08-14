@@ -12,13 +12,15 @@ import { AccordionModule } from 'primeng/accordion';
 import { MenuItem } from 'primeng/api';    
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
+import { RegressionComponent } from './componets/regression/regression.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BinaryClassificationComponent
+    BinaryClassificationComponent,
+    RegressionComponent
   ],
   imports: [
     BrowserModule,

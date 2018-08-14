@@ -5,16 +5,17 @@ import { map } from 'rxjs/operators'
 import * as _ from 'lodash';
 import { BinaryPrediction } from '../models/binary-prediction.model';
 import { Response, ResponseContentType } from '@angular/http';
+import { RegressionPrediction } from '../models/regression-prediction.model';
 
 @Injectable()
 export class CustomHttpClientService {
 
-  apiUrl = 'http://localhost:56661/api/values';
+  apiUrl = 'http://localhost:56661/api/';
 
   constructor(private http: HttpClient) { }
 
   public getBinaryResultsForId(id: number): Observable<BinaryPrediction[]>{
-    const url = this.apiUrl + '/' + id;
+    const url = this.apiUrl + 'values/' + id;
     return this.http
       .get(url)
       .pipe(
@@ -22,7 +23,6 @@ export class CustomHttpClientService {
           return this.processBinaryPrediction(response);
         })
       );
-      
   }
 
   private processBinaryPrediction(response): BinaryPrediction[]{
@@ -35,4 +35,26 @@ export class CustomHttpClientService {
       }
       return result;
   }
+
+  public getRegressionResultsForId(id: number): Observable<RegressionPrediction[]>{
+    const url = this.apiUrl + 'regression/' + id;
+    return this.http
+      .get(url)
+      .pipe(
+        map(response =>{
+          return this.processRegressionPrediction(response);
+        })
+      );
+  }
+
+  private processRegressionPrediction(response): RegressionPrediction[]{
+    let result: RegressionPrediction[] = null;
+    if (response && response.constructor === Array) {
+      result = [];
+      for (const item of response) {
+        result.push(new RegressionPrediction(item));
+      }
+    }
+    return result;
+}
 }
