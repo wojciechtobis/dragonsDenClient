@@ -1,42 +1,45 @@
+<div class="main-container">
+  <div class="chart-container">
+    <p-chart type="line" [data]="data" [options]="chartOptions" width="100%" height="80vh"></p-chart>
+    <div class="slider">
+        <p-slider [(ngModel)]="currentCycle" [min]="0" [max]="sliderRange" (onChange)="sliderChange()"></p-slider>
+    </div>
+    
 
-<div>
-  <p-chart type="line" [data]="data" [options]="chartOptions" width="80vw" height="80vh"></p-chart>
-</div>
+  <div class="navigation-container">
+      <p-button label="Next cycle" (onClick)="nextCycle()" class="ui-button-raised"></p-button>
+      <p-button label="Start" (onClick)="start()" class="ui-button-raised"></p-button>
+      <p-button label="Pause" (onClick)="pause()" class="ui-button-raised"></p-button>
+      <p-button label="Stop" (onClick)="stop()" class="ui-button-raised"></p-button>
+      <p-button label="Previous cycle" (onClick)="prevCycle()" class="ui-button-raised"></p-button>
+    </div>
+  </div>
 
-<div>
-  <p-slider [(ngModel)]="currentCycle" [min]="0" [max]="sliderRange" (onChange)="sliderChange()"></p-slider>
-</div>
-
-<div>
-  <p-button label="1" (onClick)="getResults(1)" class="ui-button-raised"></p-button>
-  <p-button label="2" (onClick)="getResults(39)" class="ui-button-raised"></p-button>
-  <p-button label="3" (onClick)="getResults(57)" class="ui-button-raised"></p-button>
-  <p-button label="4" (onClick)="getResults(70)" class="ui-button-raised"></p-button>
-  <p-button label="5" (onClick)="getResults(91)" class="ui-button-raised"></p-button>
-</div>
-
-<div>
-  <p>
-    Current cycle: {{ currentCycle }}
-  </p>
-  <p>
-    Boosted probability: {{ boostedProbability }}
-  </p>
-  <p>
-    Forest probability: {{ forestProbability }}
-  </p>
-  <p>
-    Logistic probability: {{ logisticProbability }}
-  </p>
-  <p>
-    Nnet probability: {{ nnetProbability }}
-  </p>
-</div>
-
-<div>
-  <p-button label="Next cycle" (onClick)="nextCycle()" class="ui-button-raised"></p-button>
-  <p-button label="Start" (onClick)="start()" class="ui-button-raised"></p-button>
-  <p-button label="Pause" (onClick)="pause()" class="ui-button-raised"></p-button>
-  <p-button label="Stop" (onClick)="stop()" class="ui-button-raised"></p-button>
-  <p-button label="Previous cycle" (onClick)="prevCycle()" class="ui-button-raised"></p-button>
+  <div class="legend-container">
+    <div class="button-results-container">
+        <p-button label="1" (onClick)="getResults(1)" class="ui-button-raised"></p-button>
+        <p-button label="2" (onClick)="getResults(39)" class="ui-button-raised"></p-button>
+        <p-button label="3" (onClick)="getResults(57)" class="ui-button-raised"></p-button>
+        <p-button label="4" (onClick)="getResults(70)" class="ui-button-raised"></p-button>
+        <p-button label="5" (onClick)="getResults(91)" class="ui-button-raised"></p-button>
+    </div>
+    
+    <div class="stats-container">
+        <p>
+            Current cycle: {{ currentCycle }}
+          </p>
+          <p>
+            Boosted probability: {{ boostedProbability }}
+          </p>
+          <p>
+            Forest probability: {{ forestProbability }}
+          </p>
+          <p>
+            Logistic probability: {{ logisticProbability }}
+          </p>
+          <p>
+            Nnet probability: {{ nnetProbability }}
+          </p>
+    </div>
+  </div>
 </div>
