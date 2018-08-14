@@ -10,7 +10,8 @@ import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { MenuItem } from 'primeng/api';    
-
+import { SliderModule } from 'primeng/slider';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,6 +26,8 @@ import { MenuItem } from 'primeng/api';
     ChartModule,
     ButtonModule,
     AccordionModule,
+    SliderModule,
+    FormsModule
   ],
   providers: [CustomHttpClientService],
   bootstrap: [AppComponent]

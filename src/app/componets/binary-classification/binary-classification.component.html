@@ -1,6 +1,10 @@
 
 <div>
-  <p-chart type="line" [data]="data" width="80vw" height="80vh"></p-chart>
+  <p-chart type="line" [data]="data" [options]="chartOptions" width="80vw" height="80vh"></p-chart>
+</div>
+
+<div>
+  <p-slider [(ngModel)]="currentCycle" [min]="0" [max]="sliderRange" (onChange)="sliderChange()"></p-slider>
 </div>
 
 <div>
@@ -12,6 +16,9 @@
 </div>
 
 <div>
+  <p>
+    Current cycle: {{ currentCycle }}
+  </p>
   <p>
     Boosted probability: {{ boostedProbability }}
   </p>

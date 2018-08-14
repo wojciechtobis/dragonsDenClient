@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomHttpClientService } from '../../services/custom-http-client.service';
 import { BinaryPrediction } from '../../models/binary-prediction.model';
 import { ChartData } from '../../models/chart-data.model';
+import { ChartOptions } from '../../models/chart-options.model';
 
 @Component({
   selector: 'app-binary-classification',
@@ -11,20 +12,39 @@ import { ChartData } from '../../models/chart-data.model';
 export class BinaryClassificationComponent implements OnInit {
 
   private results: BinaryPrediction[];
-  private currentCycle: number;
   private interval;
 
+  public currentCycle: number;
   public data: ChartData;
+  public chartOptions: ChartOptions;
   public boostedProbability: number;
   public forestProbability: number;
   public logisticProbability: number;
   public nnetProbability: number;
   public currentResults: BinaryPrediction[];
+  public sliderRange: number;
 
   constructor(private customHttpClientService: CustomHttpClientService) { }
 
   ngOnInit() {
-    this.currentCycle = 0;
+    this.currentCycle = 40;
+    this.chartOptions = {
+      scales: {
+        yAxes: [{
+            ticks: {
+                max: 1,
+                min: 0
+            }
+        }]
+      },
+      animation: {
+        duration: 0,
+      },
+      hover: {
+          animationDuration: 0,
+      },
+      responsiveAnimationDuration: 0,
+    }
   }
 
   public getResults(id: number){
@@ -33,7 +53,9 @@ export class BinaryClassificationComponent implements OnInit {
       .getBinaryResultsForId(id)
       .subscribe(value => {
         this.results = value;
-        this.updateState(50);
+        this.sliderRange = value.length-1;
+        this.currentCycle = 50;
+        this.updateState(this.currentCycle);        
       });
   }
 
@@ -61,6 +83,10 @@ export class BinaryClassificationComponent implements OnInit {
 
   public prevCycle(){
     this.updateState(this.currentCycle - 1);
+  }
+
+  public sliderChange(){
+    this.updateState(this.currentCycle);
   }
 
   private convertToChartData(results: BinaryPrediction[]): ChartData{
@@ -92,19 +118,19 @@ export class BinaryClassificationComponent implements OnInit {
   }
 
   private setProbabilities(){
-    this.boostedProbability = this.results[this.currentCycle].boostedProbability;
-    this.forestProbability = this.results[this.currentCycle].forestProbability;
-    this.logisticProbability = this.results[this.currentCycle].logisticProbability;
-    this.nnetProbability = this.results[this.currentCycle].nnetProbability;
+    this.boostedProbability = this.results[this.currentCycle-1].boostedProbability;
+    this.forestProbability = this.results[this.currentCycle-1].forestProbability;
+    this.logisticProbability = this.results[this.currentCycle-1].logisticProbability;
+    this.nnetProbability = this.results[this.currentCycle-1].nnetProbability;
   }
 
   private updateState(currentCycle: number){
-    if(currentCycle >= this.results.length || currentCycle < 0){
+    if(currentCycle > this.results.length || currentCycle <= 0){
       this.pause();
       return;
     }
     this.currentCycle = currentCycle;
-    this.currentResults = this.results.filter(c => c.cycle <= this.currentCycle+1);
+    this.currentResults = this.results.filter(c => c.cycle <= this.currentCycle);
     this.data = this.convertToChartData(this.currentResults);
     this.setProbabilities();
   }
