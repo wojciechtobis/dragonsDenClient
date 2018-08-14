@@ -6,12 +6,12 @@
     </div>
     
 
-  <div class="navigation-container">
-      <p-button label="Next cycle" (onClick)="nextCycle()" class="ui-button-raised"></p-button>
-      <p-button label="Start" (onClick)="start()" class="ui-button-raised"></p-button>
-      <p-button label="Pause" (onClick)="pause()" class="ui-button-raised"></p-button>
-      <p-button label="Stop" (onClick)="stop()" class="ui-button-raised"></p-button>
-      <p-button label="Previous cycle" (onClick)="prevCycle()" class="ui-button-raised"></p-button>
+    <div class="navigation-container">
+      <p-button icon="fa fa-step-backward" (onClick)="prevCycle()" class="ui-button-raised"></p-button>      
+      <p-button icon="fa fa-play" (onClick)="start()" class="ui-button-raised"></p-button>
+      <p-button icon="fa fa-pause" (onClick)="pause()" class="ui-button-raised"></p-button>
+      <p-button icon="fa fa-stop" (onClick)="stop()" class="ui-button-raised"></p-button>
+      <p-button icon="fa fa-step-forward" (onClick)="nextCycle()" class="ui-button-raised"></p-button>
     </div>
   </div>
 
