@@ -13,8 +13,12 @@ import { MenuItem } from 'primeng/api';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { RegressionComponent } from './componets/regression/regression.component';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const appRoutes: Routes = [
+  { path: 'binary-classification', component: BinaryClassificationComponent },
+  { path: 'regression',      component: RegressionComponent }
+]
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import { RegressionComponent } from './componets/regression/regression.component
     ButtonModule,
     AccordionModule,
     SliderModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [CustomHttpClientService],
   bootstrap: [AppComponent]
