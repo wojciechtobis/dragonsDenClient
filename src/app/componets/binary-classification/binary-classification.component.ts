@@ -17,10 +17,10 @@ export class BinaryClassificationComponent implements OnInit {
   public currentCycle: number;
   public data: ChartData;
   public chartOptions: ChartOptions;
-  public boostedProbability: number;
-  public forestProbability: number;
-  public logisticProbability: number;
-  public nnetProbability: number;
+  public boostedProbability: string;
+  public forestProbability: string;
+  public logisticProbability: string;
+  public nnetProbability: string;
   public currentResults: BinaryPrediction[];
   public sliderRange: number;
 
@@ -118,10 +118,10 @@ export class BinaryClassificationComponent implements OnInit {
   }
 
   private setProbabilities(){
-    this.boostedProbability = this.results[this.currentCycle-1].boostedProbability;
-    this.forestProbability = this.results[this.currentCycle-1].forestProbability;
-    this.logisticProbability = this.results[this.currentCycle-1].logisticProbability;
-    this.nnetProbability = this.results[this.currentCycle-1].nnetProbability;
+    this.boostedProbability = this.convertProbability(this.results[this.currentCycle-1].boostedProbability);
+    this.forestProbability = this.convertProbability(this.results[this.currentCycle-1].forestProbability);
+    this.logisticProbability = this.convertProbability(this.results[this.currentCycle-1].logisticProbability);
+    this.nnetProbability = this.convertProbability(this.results[this.currentCycle-1].nnetProbability);
   }
 
   private updateState(currentCycle: number){
@@ -133,5 +133,10 @@ export class BinaryClassificationComponent implements OnInit {
     this.currentResults = this.results.filter(c => c.cycle <= this.currentCycle);
     this.data = this.convertToChartData(this.currentResults);
     this.setProbabilities();
+  }
+
+  private convertProbability(probability: number): string {
+
+    return (100*probability).toFixed(2) + '%'
   }
 }
