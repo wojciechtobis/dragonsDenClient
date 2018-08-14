@@ -3,16 +3,23 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { BinaryClassificationComponent } from './componets/binary-classification/binary-classification.component';
+import { CustomHttpClientService } from './services/custom-http-client.service';
+import { HttpClientModule } from '@angular/common/http';
+import {ChartModule} from 'primeng/chart';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BinaryClassificationComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    ChartModule
   ],
-  providers: [],
+  providers: [CustomHttpClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
