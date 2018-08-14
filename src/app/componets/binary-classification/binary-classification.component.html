@@ -1,7 +1,35 @@
-<p>
-  binary-classification works!
-</p>
 
-<button (click)="test()">TEST</button>
+<div>
+  <p-chart type="line" [data]="data" width="80vw" height="80vh"></p-chart>
+</div>
 
-<p-chart type="line" [data]="data"></p-chart>
+<div>
+  <p-button label="1" (onClick)="getResults(1)" class="ui-button-raised"></p-button>
+  <p-button label="2" (onClick)="getResults(39)" class="ui-button-raised"></p-button>
+  <p-button label="3" (onClick)="getResults(57)" class="ui-button-raised"></p-button>
+  <p-button label="4" (onClick)="getResults(70)" class="ui-button-raised"></p-button>
+  <p-button label="5" (onClick)="getResults(91)" class="ui-button-raised"></p-button>
+</div>
+
+<div>
+  <p>
+    Boosted probability: {{ boostedProbability }}
+  </p>
+  <p>
+    Forest probability: {{ forestProbability }}
+  </p>
+  <p>
+    Logistic probability: {{ logisticProbability }}
+  </p>
+  <p>
+    Nnet probability: {{ nnetProbability }}
+  </p>
+</div>
+
+<div>
+  <p-button label="Next cycle" (onClick)="nextCycle()" class="ui-button-raised"></p-button>
+  <p-button label="Start" (onClick)="start()" class="ui-button-raised"></p-button>
+  <p-button label="Pause" (onClick)="pause()" class="ui-button-raised"></p-button>
+  <p-button label="Stop" (onClick)="stop()" class="ui-button-raised"></p-button>
+  <p-button label="Previous cycle" (onClick)="prevCycle()" class="ui-button-raised"></p-button>
+</div>
