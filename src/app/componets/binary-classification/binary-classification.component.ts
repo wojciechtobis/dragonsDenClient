@@ -15,6 +15,7 @@ export class BinaryClassificationComponent implements OnInit {
   private results: BinaryPrediction[];
   private interval;
 
+  public currentTest: number;
   public currentCycle: number;
   public data: ChartData;
   public chartOptions: ChartOptions;
@@ -55,11 +56,13 @@ export class BinaryClassificationComponent implements OnInit {
 
   public getResults(id: number){
 
+    this.currentTest = id;
+
     this.customHttpClientService
       .getBinaryResultsForId(id)
       .subscribe(value => {
         this.results = value;
-        this.sliderRange = value.length-1;
+        this.sliderRange = value.length;
         this.currentCycle = 50;
         this.updateState(this.currentCycle);        
       });

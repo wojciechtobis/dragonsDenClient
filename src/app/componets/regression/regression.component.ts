@@ -15,6 +15,7 @@ export class RegressionComponent implements OnInit {
   private results: RegressionPrediction[];
   private interval;
 
+  public currentTest: number;
   public currentCycle: number;
   public data: ChartData;
   public chartOptions: ChartOptions;
@@ -55,11 +56,13 @@ export class RegressionComponent implements OnInit {
 
   public getResults(id: number){
 
+    this.currentTest = id;
+
     this.customHttpClientService
       .getRegressionResultsForId(id)
       .subscribe(value => {
         this.results = value;
-        this.sliderRange = value.length-1;
+        this.sliderRange = value.length;
         this.currentCycle = 50;
         this.updateState(this.currentCycle);        
       });
