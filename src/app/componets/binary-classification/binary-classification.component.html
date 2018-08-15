@@ -16,6 +16,10 @@
   </div>
 
   <div class="legend-container">
+    <div class="nav-buttons-container">
+      <p-button label="Binary Classification" disabled="true" class="ui-button-raised"></p-button>
+      <p-button label="Regression" (onClick)="navigateToRegression()" class="ui-button-raised"></p-button>
+    </div>
     <div class="button-results-container">
         <p-button label="1" (onClick)="getResults(1)" class="ui-button-raised"></p-button>
         <p-button label="2" (onClick)="getResults(39)" class="ui-button-raised"></p-button>

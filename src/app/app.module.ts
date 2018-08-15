@@ -14,8 +14,10 @@ import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { RegressionComponent } from './componets/regression/regression.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MainScreenComponent } from './componets/main-screen/main-screen.component';
 
 const appRoutes: Routes = [
+  { path: '', component: MainScreenComponent},
   { path: 'binary-classification', component: BinaryClassificationComponent },
   { path: 'regression',      component: RegressionComponent }
 ]
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     BinaryClassificationComponent,
-    RegressionComponent
+    RegressionComponent,
+    MainScreenComponent
   ],
   imports: [
     BrowserModule,

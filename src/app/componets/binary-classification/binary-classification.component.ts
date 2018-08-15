@@ -3,6 +3,7 @@ import { CustomHttpClientService } from '../../services/custom-http-client.servi
 import { BinaryPrediction } from '../../models/binary-prediction.model';
 import { ChartData } from '../../models/chart-data.model';
 import { ChartOptions } from '../../models/chart-options.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-binary-classification',
@@ -24,7 +25,10 @@ export class BinaryClassificationComponent implements OnInit {
   public currentResults: BinaryPrediction[];
   public sliderRange: number;
 
-  constructor(private customHttpClientService: CustomHttpClientService) { }
+  constructor(
+    private customHttpClientService: CustomHttpClientService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.currentCycle = 40;
@@ -45,6 +49,8 @@ export class BinaryClassificationComponent implements OnInit {
       },
       responsiveAnimationDuration: 0,
     }
+
+    this.getResults(1);
   }
 
   public getResults(id: number){
@@ -87,6 +93,10 @@ export class BinaryClassificationComponent implements OnInit {
 
   public sliderChange(){
     this.updateState(this.currentCycle);
+  }
+
+  public navigateToRegression(){
+    this.router.navigate(['regression']);
   }
 
   private convertToChartData(results: BinaryPrediction[]): ChartData{

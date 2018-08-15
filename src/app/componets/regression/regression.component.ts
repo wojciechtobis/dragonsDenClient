@@ -3,6 +3,7 @@ import { ChartOptions } from '../../models/chart-options.model';
 import { ChartData } from '../../models/chart-data.model';
 import { CustomHttpClientService } from '../../services/custom-http-client.service';
 import { RegressionPrediction } from '../../models/regression-prediction.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-regression',
@@ -24,7 +25,10 @@ export class RegressionComponent implements OnInit {
   public currentResults: RegressionPrediction[];
   public sliderRange: number;
 
-  constructor(private customHttpClientService: CustomHttpClientService) { }
+  constructor(
+    private customHttpClientService: CustomHttpClientService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.currentCycle = 40;
@@ -45,6 +49,8 @@ export class RegressionComponent implements OnInit {
       },
       responsiveAnimationDuration: 0,
     }
+
+    this.getResults(1);
   }
 
   public getResults(id: number){
@@ -87,6 +93,10 @@ export class RegressionComponent implements OnInit {
 
   public sliderChange(){
     this.updateState(this.currentCycle);
+  }
+
+  public navigateToBinary(){
+    this.router.navigate(['binary-classification']);
   }
 
   private convertToChartData(results: RegressionPrediction[]): ChartData{
@@ -137,6 +147,6 @@ export class RegressionComponent implements OnInit {
 
   private convertProbability(probability: number): string {
 
-    return probability.toFixed(2) + '%'
+    return probability.toFixed(2);
   }
 }

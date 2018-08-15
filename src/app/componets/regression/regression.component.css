@@ -26,10 +26,16 @@ p-button{
     flex: 1 1 20%;
 }
 
+.nav-buttons-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 10%;
+}
+
 .button-results-container{
     display: flex;
     justify-content: center;
-    padding-top: 20%;
+    padding-top: 5%;
 }
 
 .stats-container{
