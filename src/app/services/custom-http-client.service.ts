@@ -10,7 +10,7 @@ import { RegressionPrediction } from '../models/regression-prediction.model';
 @Injectable()
 export class CustomHttpClientService {
 
-  apiUrl = 'http://localhost:56661/api/';
+  apiUrl = 'http://anddd.hostingasp.pl/api/';
 
   constructor(private http: HttpClient) { }
 
