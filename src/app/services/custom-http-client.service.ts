@@ -10,7 +10,7 @@ import { RegressionPrediction } from '../models/regression-prediction.model';
 @Injectable()
 export class CustomHttpClientService {
 
-  apiUrl = 'http://anddd.hostingasp.pl/api/';
+  apiUrl = 'https://machinelearningand.azurewebsites.net/api/';
 
   constructor(private http: HttpClient) { }
 
