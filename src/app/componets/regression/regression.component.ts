@@ -39,7 +39,17 @@ export class RegressionComponent implements OnInit {
             ticks: {
                 max: 260,
                 min: 0
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Remaining lifetime"
             }
+        }],
+        xAxes: [{
+          scaleLabel:{
+              display: true,
+              labelString: "Cycle"
+          }
         }]
       },
       animation: {

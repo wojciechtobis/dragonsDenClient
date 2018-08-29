@@ -4,6 +4,16 @@ export interface ChartOptions {
             ticks: {
                 max: number,
                 min: number
+            },
+            scaleLabel:{
+                display: boolean,
+                labelString: string
+            }
+        }],
+        xAxes: [{
+            scaleLabel:{
+                display: boolean,
+                labelString: string
             }
         }]
     },

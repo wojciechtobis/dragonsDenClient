@@ -39,7 +39,17 @@ export class BinaryClassificationComponent implements OnInit {
             ticks: {
                 max: 1,
                 min: 0
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Probability of malfunction"
             }
+        }],
+        xAxes: [{
+          scaleLabel:{
+              display: true,
+              labelString: "Cycle"
+          }
         }]
       },
       animation: {
